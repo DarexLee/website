@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darrell - Profile</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="/api/placeholder/100/100" alt="Darrell" class="profile-pic">
+            <h1>Experienced web developer</h1>
+            <p class="tagline">specializing in ReactJS.</p>
+        </header>
+        
+        <p class="description">Description.</p>
+        
+        <div class="buttons">
+            <a href="#" class="btn btn-primary">Contact me</a>
+            <a href="#" class="btn btn-secondary">Download CV</a>
+            <a href="#" class="btn btn-secondary">in</a>
+            <a href="#" class="btn btn-secondary">GitHub</a>
+        </div>
+    </div>
+
+    <div id="nav-container">
+        <nav id="sticky-nav">
+            <a href="#about" class="active">About</a>
+            <a href="#projects">Project</a>
+            <a href="#experience">Experience</a>
+        </nav>
+    </div>
+
+    <div class="container">
+        <section id="about" class="section">
+            <div class="content-wrapper">
+                <div class="number-circle">1</div>
+                <h2>About</h2>
+                <div class="content">
+                    <p>Hi im Darrell</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects" class="section">
+            <div class="content-wrapper">
+                <div class="number-circle">2</div>
+                <h2>Projects</h2>
+                <div class="content">
+                    <p>Your projects will be displayed here.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="experience" class="section">
+            <div class="content-wrapper">
+                <div class="number-circle">3</div>
+                <h2>Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <span class="timeline-date">2022 - present</span>
+                            <h3>Job 1</h3>
+                            <p>Python etc etc</p>
+                            <p>Text</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <span class="timeline-date">2020 - 2022</span>
+                            <h3> Job 2</h3>
+                            <p>HTML, CSS & JS</p>
+                            <p>Text.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <span class="timeline-date">2020</span>
+                            <h3>Job 3</h3>
+                            <p>Text</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const navContainer = document.getElementById('nav-container');
+        const nav = document.getElementById('sticky-nav');
+        const navTop = nav.offsetTop;
+
+        function dynamicNavigation() {
+            if (window.scrollY > navTop) {
+                navContainer.classList.add('visible');
+            } else {
+                navContainer.classList.remove('visible');
+            }
+        }
+
+        window.addEventListener('scroll', dynamicNavigation);
+
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        function setActiveNavItem() {
+            const sections = document.querySelectorAll('.section');
+            const navItems = document.querySelectorAll('nav a');
+
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    navItems.forEach(item => item.classList.remove('active'));
+                    navItems[index].classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', setActiveNavItem);
+    </script>
+</body>
+</html>
